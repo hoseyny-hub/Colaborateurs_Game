@@ -1054,6 +1054,9 @@
     const messageEl = $("message");
     const controlsHint = $("controlsHint");
     const levelHint = $("levelHint");
+    
+    const mobileTopProgressFill = $("mobileTopProgressFill");
+    const mobileTopProgressText = $("mobileTopProgressText");
 
     const gameArea = $("gameArea");
     const itemsLayer = $("itemsLayer");
@@ -1272,9 +1275,16 @@
         heartsValue.appendChild(h);
       }
 
-      const pct = clamp((state.score / lv.target) * 100, 0, 100);
-      progressBar.style.width = `${pct}%`;
-      progressPercent.textContent = `${Math.round(pct)}%`;
+  const pct = clamp((state.score / lv.target) * 100, 0, 100);
+progressBar.style.width = `${pct}%`;
+progressPercent.textContent = `${Math.round(pct)}%`;
+
+if (mobileTopProgressFill) {
+  mobileTopProgressFill.style.width = `${pct}%`;
+}
+if (mobileTopProgressText) {
+  mobileTopProgressText.textContent = `${Math.round(pct)}%`;
+}
 
       controlsHint.textContent = state.mouseActive
         ? "Mode souris / tactile actif"
@@ -1682,6 +1692,7 @@
 </body>
 
 </html>
+
 
 
 
