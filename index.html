@@ -1498,18 +1498,28 @@
           itemHitbox.y + itemHitbox.height > basketHitbox.y;
         if (hit) {
           if (item.family === "good") {
-            state.score += item.points;
-            addParticle(item.x, item.y, `+${item.points}`, "good");
-            setMessage("Produit Coop attrapé. Bien joué.");
-          } else {
-            state.score = Math.max(0, state.score + item.points);
-            state.lives -= 1;
-            addParticle(item.x, item.y, `${item.points}`, "bad");
-            setMessage("Aïe, un feu. Tu perds des points.");
-            if (state.lives <= 0) {
-              finishGameLose();
-            }
-          }
+  state.score += item.points;
+  addParticle(
+    state.playerX + state.playerWidth / 2,
+    state.height - state.playerHeight - 65,
+    `+${item.points}`,
+    "good"
+  );
+  setMessage("Produit Coop attrapé. Bien joué.");
+} else {
+  state.score = Math.max(0, state.score + item.points);
+  state.lives -= 1;
+  addParticle(
+    state.playerX + state.playerWidth / 2,
+    state.height - state.playerHeight - 65,
+    `${item.points}`,
+    "bad"
+  );
+  setMessage("Aïe, un feu. Tu perds des points.");
+  if (state.lives <= 0) {
+    finishGameLose();
+  }
+}
           return;
         }
 
@@ -1672,4 +1682,5 @@
 </body>
 
 </html>
+
 
